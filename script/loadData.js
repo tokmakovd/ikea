@@ -43,5 +43,5 @@ export const loadData = () =>{
     }
 
     getData.catalog((data) => console.log(data))
-    getData.subCatalog((data) => console.log(data))
+    getData.subCatalog(value, (data) => console.log(data))
 };

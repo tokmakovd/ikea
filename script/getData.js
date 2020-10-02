@@ -52,14 +52,26 @@ export const getData = {
     },
     catalog(callback){
         this.get((data) =>{
-            const result =' '
+            const result = data.reduce((arr, item) => {
+                if (!arr.includes(item.category)){
+                    arr.push(item.category)
+                }
+                return arr
+            }, [])
+            callback(result);
         })
-        callback(result);
+        
     },
-    subCatalog(callback){
+    subCatalog(value, callback){
         this.get((data) =>{
-            const result =' '
-        })
+            const result = data
+                .filter(item => item.category === value)
+                .reduce((arr, item)=>{
+                    if (!arr.includes(item.subcategory)){
+                        arr.push(item.subcategory);
+                    }
+                })
+        }, [])
         callback(result);
     },
 };
